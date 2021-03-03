@@ -323,7 +323,7 @@
             <a href="#host-2-host" class="toc-h1 toc-link" data-title="Прямая интеграция Host-2-Host  (Получение и отправка документов по своей организации)">Прямая интеграция Host-2-Host  (Получение и отправка документов по своей организации)</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#2-1-sberbusiness-id" class="toc-h2 toc-link" data-title="2.1 Сервис авторизации-SberBusiness ID">2.1 Сервис авторизации-SberBusiness ID<span id="authorization_sbbusid"></span></a>
+                    <a href="#2-1-sberbusiness-id" class="toc-h2 toc-link" data-title="2.1 Сервис авторизации-SberBusiness ID">2.1 Сервис авторизации-SberBusiness ID</a>
                   </li>
                   <li>
                     <a href="#2-2" class="toc-h2 toc-link" data-title="2.2 Информация об организации">2.2 Информация об организации</a>
@@ -362,7 +362,7 @@
                     <a href="#2-13" class="toc-h2 toc-link" data-title="2.13 Сервис самоинкассации">2.13 Сервис самоинкассации</a>
                   </li>
                   <li>
-                    <a href="#2-14-2012" class="toc-h2 toc-link" data-title="2.14 Формирование электронной подписи (ГОСТ 2012)">2.14 Формирование электронной подписи (ГОСТ 2012)<span id="el_sign_formiration"></span></a>
+                    <a href="#2-14-2012" class="toc-h2 toc-link" data-title="2.14 Формирование электронной подписи (ГОСТ 2012)">2.14 Формирование электронной подписи (ГОСТ 2012)</a>
                   </li>
                   <li>
                     <a href="#2-15-api" class="toc-h2 toc-link" data-title="2.15 Получение статистики по количеству запросов к API">2.15 Получение статистики по количеству запросов к API</a>
@@ -1233,8 +1233,10 @@
 
 <p>6.5. Организацию и проведение мероприятий по усилению безопасности в соответствии с информационными сообщениями, которые направляются Банком официальными письмами, а также публикуются на сайте Банка.</p>
 <h1 id='host-2-host'>Прямая интеграция Host-2-Host  (Получение и отправка документов по своей организации)</h1>
-<p><span id="7144647d04672ae"></span></p>
-<h2 id='2-1-sberbusiness-id'>2.1 Сервис авторизации-SberBusiness ID<span id="authorization_sbbusid"></span></h2>
+<p><span id="2a793ad28cf1764"></span></p>
+<h2 id='2-1-sberbusiness-id'>2.1 Сервис авторизации-SberBusiness ID</h2>
+<p><span id="authorization_sbbusid"></span></p>
+
 <p><strong>Общая информация</strong></p>
 
 <p>API сервиса авторизации реализован по Authorization Code Flow. Авторизация и аутентификация выполняется путем переадресации пользователя с запросом /authorize на страницу входа в Сбербанк Бизнес Онлайн и запроса /token для получения Access token.</p>
@@ -3761,7 +3763,7 @@ This operation does not require authentication
 Если же атрибут &quot;amount&quot; указывается в запросе, то должен иметь значение 0 во избежание ошибок. Атрибут &quot;rate&quot; должен принимать только значения 10, 20.<br>
 В поле &quot;Назначение платежа&quot; необходимо обязательно указать посчитанное значение суммы с учетом НДС.<br>
 Пример ПРАВИЛЬНОГО заполнения:<br>
-НДС<em>10</em>%<em>-_100.63 рублей (&quot;</em>&quot; - нижнее подчеркивание является признаком пробела, символ проставлять не нужно).<br>
+НДС<em>10</em>%_-_100.63 рублей (&quot; _ &quot; - нижнее подчеркивание является признаком пробела, символ проставлять не нужно).<br>
 Если процентное значение не указано, то дефис перед суммой указывать не нужно: НДС_100.63 рублей.</li>
 <li> При выбранном &quot;type&quot;:&quot;MANUAL&quot; (Ручной ввод НДС) атрибут &quot;amount&quot; указывать не обязательно, но в этом случае по умолчанию сумма НДС примет значение 0 рублей. Если же атрибут &quot;amount&quot; указывается в запросе,<br>
 то в нем нужно указать желаемое значение НДС, соответствующее формату.<br>
@@ -3802,15 +3804,33 @@ This operation does not require authentication
 
 <p>Преобразование BASE64URL, отличается от BASE64 преобразования:</p>
 
-<ol>
-<li> Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.
-|BASE64URL| BASE64 |
-|--|--|
-|- (minus)  | + |
-|_ (underline)|/|
-||</li>
-<li> В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
-</ol>
+<ul>
+<li>Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>BASE64URL</th>
+<th>BASE64</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>- (minus)</td>
+<td>+</td>
+</tr>
+<tr>
+<td>_ (underline)</td>
+<td>/</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
+</ul>
 
 <p>В ответе на запрос сервер возвращает JSON-документ, который содержит реквизитный состав подготовленного черновика рублевого платежного поручения в статусе  <strong>Создан</strong>.</p>
 <h2 id='2-4'>2.4 Криптографические ресурсы</h2>
@@ -4131,7 +4151,7 @@ This operation does not require authentication
 
 <ol>
 <li> Получить <a href="#authorization_user">AccessToken</a></li>
-<li> Отправить [запрос&gt;/link&gt;</li>
+<li> Отправить <a href="#request_resource_crypto_cert_req_state">запрос</a></li>
 </ol>
 
 <p>Для получения информации по статусу необходимо отправить GET-запрос (<strong>/v1/crypto/cert-requests/{externalId}/state</strong>), в котором необходимо передать авторизационный токен (<strong>Access Token</strong>) и идентификатор запроса на новый сертификат (<strong>externalId</strong>). Авторизационный токен передается в параметре  <strong>Authorization</strong>  заголовка запроса.</p>
@@ -4257,7 +4277,7 @@ This operation does not require authentication
 <p><strong>Шаги</strong></p>
 
 <ol>
-<li> Получить <link anchor="authorization_user">AccessToken](#request_resource_crypto_cert_req_state)</li>
+<li> Получить <a href="#authorization_user">AccessToken</a></li>
 <li> Отправить <a href="#request_resource_crypto_cert_req_activ">запрос</a></li>
 </ol>
 
@@ -6091,7 +6111,7 @@ This operation does not require authentication
 <p>Теги дайджеста должны быть отсортированы по алфавиту. Если значение поля не определено, то тег в дайджесте не используется.</p>
 
 <ul>
-<li>  Подписание запроса [транспортной подписью (JWS)</linl></li>
+<li>  Подписание запроса <a href="#resource_payrolls_dop_info">транспортной подписью (JWS)</a></li>
 <li>  Коды возврата</li>
 </ul>
 
@@ -6102,7 +6122,7 @@ This operation does not require authentication
 <p><strong>Шаги</strong></p>
 
 <ol>
-<li> Получить <link anchor="authorization_user">AccessToken](#resource_payrolls_dop_info)</li>
+<li> Получить <a href="#authorization_user">AccessToken</a></li>
 <li> Отправить <a href="#request_resource_payrolls_state">запрос</a></li>
 </ol>
 
@@ -6418,13 +6438,13 @@ This operation does not require authentication
 
 <p><strong>Дополнительная информация</strong><span id="resource_payrolls_dop_info"></span></p>
 
-<p><strong>Content</strong>-<strong>Type</strong>  может содержать одно из двух значений:</p>
+<p><strong>Content-Type</strong>  может содержать одно из двух значений:</p>
 
 <p>1)  <strong>application</strong>/<strong>json</strong>  – запрос без подписи</p>
 
 <p>2)  <strong>application</strong>/<strong>jose</strong> <strong>–</strong> запрос, подписанный транспортной подписью</p>
 
-<p>Если  <strong>Content</strong>-*<em>**Type</em>*  имеет значение  <strong>application</strong>/<strong>jose</strong>, то запрос должен содержать данные (реквизитный состав платежного документа) в виде компактной сериализации  <a href="https://tools.ietf.org/html/rfc7515">RFC 7515: JSON Web Signature (JWS)</a>.</p>
+<p>Если  <strong>Content-Type</strong>  имеет значение  <strong>application</strong>/<strong>jose</strong>, то запрос должен содержать данные (реквизитный состав платежного документа) в виде компактной сериализации  <a href="https://tools.ietf.org/html/rfc7515">RFC 7515: JSON Web Signature (JWS)</a>.</p>
 
 <p><strong>JWS состоит из:</strong></p>
 
@@ -6452,15 +6472,33 @@ This operation does not require authentication
 
 <p>Преобразование BASE64URL, отличается от BASE64 преобразования:</p>
 
-<ol>
-<li> Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.
-|BASE64URL| BASE64 |
-|--|--|
-|- (minus)  | + |
-|_ (underline)|/|
-||<br></li>
-<li> В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
-</ol>
+<ul>
+<li>Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>BASE64URL</th>
+<th>BASE64</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>- (minus)</td>
+<td>+</td>
+</tr>
+<tr>
+<td>_ (underline)</td>
+<td>/</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
+</ul>
 
 <p>В ответе на запрос сервер возвращает JSON-документ, который содержит реквизитный состав подготовленного черновика рублевого платежного поручения в статусе  <strong>Создан</strong>.</p>
 <h3 id='2-6-2'>2.6.2 Удалённое подключение зарплатного проекта</h3>
@@ -6862,15 +6900,33 @@ This operation does not require authentication
 
 <p>Преобразование BASE64URL, отличается от BASE64 преобразования:</p>
 
-<ol>
-<li> Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.
-|BASE64URL| BASE64 |
-|--|--|
-|- (minus)  | + |
-|_ (underline)|/|
-||<br></li>
-<li> В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
-</ol>
+<ul>
+<li>Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>BASE64URL</th>
+<th>BASE64</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>- (minus)</td>
+<td>+</td>
+</tr>
+<tr>
+<td>_ (underline)</td>
+<td>/</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
+</ul>
 
 <p>В ответе на запрос сервер возвращает JSON-документ, который содержит реквизитный состав подготовленного черновика рублевого платежного поручения в статусе  <strong>Создан</strong>.</p>
 <h3 id='2-6-3'>2.6.3 Электронный реестр на открытие счетов и выпуск карт</h3>
@@ -7653,15 +7709,33 @@ This operation does not require authentication
 
 <p>Преобразование BASE64URL, отличается от BASE64 преобразования:</p>
 
-<ol>
-<li> Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.
-|BASE64URL| BASE64 |
-|--|--|
-|- (minus)  | + |
-|_ (underline)|/|
-||</li>
-<li> В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
-</ol>
+<ul>
+<li>Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>BASE64URL</th>
+<th>BASE64</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>- (minus)</td>
+<td>+</td>
+</tr>
+<tr>
+<td>_ (underline)</td>
+<td>/</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
+</ul>
 
 <p>В ответе на запрос сервер возвращает JSON-документ, который содержит реквизитный состав подготовленного черновика рублевого платежного поручения в статусе  <strong>Создан</strong>.</p>
 <h2 id='2-7'>2.7 Получение справочной информации</h2>
@@ -8102,7 +8176,6 @@ This operation does not require authentication
 
 <ul>
 <li>  Подписание запроса транспортной <a href="#resource_files_upload_dop_info">подписью</a></li>
-<li>  Коды возврата</li>
 </ul>
 
 <p><strong>Ресурс /v1/debt-registries/{externalId}/state</strong><span id="resource_debt_registr_state"></span></p>
@@ -8113,7 +8186,7 @@ This operation does not require authentication
 
 <ol>
 <li> Получить <a href="#authorization_user">AccessToken</a></li>
-<li> Отправить <a href="#7144647d04672ae">запрос</a></li>
+<li> Отправить <a href="#2a793ad28cf1764">запрос</a></li>
 </ol>
 
 <p>Для получения статуса, необходимо отправить GET-запрос (<strong>/v1/debt-registries/{externalId}/state</strong>), в котором передать авторизационный токен (<strong>Access Token</strong>) и идентификатор документа (<strong>externalId</strong>). Авторизационный токен передается в параметре  <strong>Authorization</strong>  заголовка запроса.</p>
@@ -8400,7 +8473,6 @@ This operation does not require authentication
 
 <ul>
 <li>  Подписание запроса транспортной <a href="#resource_files_upload_dop_info">подписью</a></li>
-<li>  Коды возврата</li>
 </ul>
 
 <p><strong>Ресурс /v1/files/upload/{fileId}/state</strong><span id="resource_files_upload_state"></span></p>
@@ -8560,21 +8632,39 @@ This operation does not require authentication
 
 <p>Преобразование BASE64URL, отличается от BASE64 преобразования:</p>
 
-<ol>
-<li> Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.
-|BASE64URL| BASE64 |
-|--|--|
-|- (minus)  | + |
-|_ (underline)|/|
-||</li>
-<li> В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
-</ol>
+<ul>
+<li>Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>BASE64URL</th>
+<th>BASE64</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>- (minus)</td>
+<td>+</td>
+</tr>
+<tr>
+<td>_ (underline)</td>
+<td>/</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
+</ul>
 
 <p>В ответе на запрос сервер возвращает JSON-документ, который содержит реквизитный состав подготовленного черновика рублевого платежного поручения в статусе  <strong>Создан</strong>.</p>
 <h2 id='2-9'>2.9 Реестр платежей</h2>
 <p><a href="#resource_files_download">POST /v1/files/download - Запрос ссылки на скачивание файла</a></p>
 
-<p><a href="#resource_files_download_state">GET /v1/files/downloadstate - Получение статуса</a></p>
+<p><a href="#resource_files_download_state">GET /v1/files/downloadState - Получение статуса</a></p>
 
 <p><a href="#resource_payments_registr">GET /v1/payments-registry - Получение реестра платежей</a></p>
 
@@ -8589,14 +8679,15 @@ This operation does not require authentication
 
 <p><strong>Ресурс /v1/files/download</strong><span id="resource_files_download"></span></p>
 
-<p>Ресурс позволяет получить ссылку для скачивания файла. Скачать файл после получения ссылки возможно только после получения положительного статуса о готовности файла для скачивания. Проверка статуса осуществляется с помощью ресурса  <strong>/v1/files/downloadstate.</strong></p>
+<p>Ресурс позволяет получить ссылку для скачивания файла. Скачать файл после получения ссылки возможно только после получения положительного статуса о готовности файла для скачивания. 
+Проверка статуса осуществляется с помощью ресурса <strong>/v1/files/downloadState.</strong></p>
 
 <p><strong>Шаги</strong></p>
 
 <ol>
 <li> Получить <a href="#authorization_user">AccessToken</a></li>
 <li> Отправить <a href="#request_resource_files_download">запрос</a> </li>
-<li> Получить [статус</li>
+<li> Получить <a href="#resource_files_download_state">статус</a></li>
 </ol>
 
 <p>Для создания запроса ссылки на скачивание файла необходимо отправить POST-запрос (<strong>/v1/files/download</strong>), в заголовке запроса необходимо передать авторизационный токен собственной организации (<strong>Access Token</strong>).</p>
@@ -8726,14 +8817,14 @@ curl <span class="nt">-X</span> POST /localhost:8080/fintech/api/v1/files/downlo
 This operation does not require authentication
 </aside>
 
-<p><strong>Ресурс /v1/files/downloadstate</strong><span id="resource_files_download_state"></span></p>
+<p><strong>Ресурс /v1/files/downloadState</strong><span id="resource_files_download_state"></span></p>
 
 <p>Ресурс позволяет получить статус о готовности файла для скачивания.</p>
 
 <p><strong>Шаги</strong></p>
 
 <ol>
-<li> Получить <link anchor="authorization_user">AccessToken](#resource_files_download_state)</li>
+<li> Получить <a href="#authorization_user">AccessToken</a></li>
 <li> Отправить <a href="#request_resource_files_download_state">запрос</a></li>
 </ol>
 
@@ -8868,11 +8959,11 @@ curl <span class="nt">-X</span> POST /localhost:8080/fintech/api/v1/files/downlo
 </tr>
 </thead><tbody>
 <tr>
-<td><em>anonymous</em></td>
-<td>[<a href="#schemafiledownloadstate">FileDownloadState</a>]</td>
+<td>anonymous</td>
+<td><a href="#schemafiledownloadstate">FileDownloadState</a></td>
 <td>false</td>
 <td>none</td>
-<td>[Модель статуса загрузки файла]</td>
+<td>Модель статуса загрузки файла</td>
 </tr>
 <tr>
 <td>bankComment</td>
@@ -9708,7 +9799,6 @@ This operation does not require authentication
 
 <ul>
 <li>  Подписание запроса <a href="#resource_encash_offers_dop_info">транспортной подписью</a></li>
-<li>  Коды возврата</li>
 </ul>
 
 <p><strong>Ресурс /v1/encash/encash-add-requests/{externalId}/state</strong><span id="resource_encash_add_req_state"></span></p>
@@ -10233,7 +10323,6 @@ This operation does not require authentication
 
 <ul>
 <li>  Подписание запроса <a href="#resource_encash_offers_dop_info">транспортной подписью</a></li>
-<li>  Коды возврата</li>
 </ul>
 
 <p><strong>Дополнительная информация</strong><span id="resource_encash_offers_dop_info"></span></p>
@@ -10272,15 +10361,33 @@ This operation does not require authentication
 
 <p>Преобразование BASE64URL, отличается от BASE64 преобразования:</p>
 
-<ol>
-<li> Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.
-|BASE64URL| BASE64 |
-|--|--|
-|- (minus)  | + |
-|_ (underline)|/|
-||</li>
-<li> В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
-</ol>
+<ul>
+<li>Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>BASE64URL</th>
+<th>BASE64</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>- (minus)</td>
+<td>+</td>
+</tr>
+<tr>
+<td>_ (underline)</td>
+<td>/</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
+</ul>
 
 <p>В ответе на запрос сервер возвращает JSON-документ, который содержит реквизитный состав подготовленного черновика рублевого платежного поручения в статусе  <strong>Создан</strong>.</p>
 <h2 id='2-11'>2.11 Инкассовые поручения</h2>
@@ -10526,7 +10633,6 @@ This operation does not require authentication
 
 <ul>
 <li>  Подписание запроса <a href="#resource_collection_orders_dop_info">транспортной подписью</a></li>
-<li>  Коды возврата</li>
 </ul>
 
 <p><strong>Ресурс /v1/collection-orders/{externalId}/state</strong><span id="resource_collection_orders_state"></span></p>
@@ -10855,15 +10961,33 @@ This operation does not require authentication
 
 <p>Преобразование BASE64URL, отличается от BASE64 преобразования:</p>
 
-<ol>
-<li> Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.
-|BASE64URL| BASE64 |
-|--|--|
-|- (minus)  | + |
-|_ (underline)|/|
-||</li>
-<li> В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
-</ol>
+<ul>
+<li>Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>BASE64URL</th>
+<th>BASE64</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>- (minus)</td>
+<td>+</td>
+</tr>
+<tr>
+<td>_ (underline)</td>
+<td>/</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
+</ul>
 
 <p>В ответе на запрос сервер возвращает JSON-документ, который содержит реквизитный состав подготовленного черновика рублевого платежного поручения в статусе  <strong>Создан</strong>.</p>
 <h2 id='2-12'>2.12 Входящие платежные требования</h2>
@@ -11093,7 +11217,6 @@ This operation does not require authentication
 
 <ul>
 <li>  Подписание запроса <a href="#payment_requests_incoming_state_dop_info">транспортной подписью</a></li>
-<li>  Коды возврата</li>
 </ul>
 
 <p><strong>Ресурс  /v1/acceptance-letters/{externalId}/state</strong><span id="resource_acceptance_letter_state"></span></p>
@@ -11546,15 +11669,33 @@ This operation does not require authentication
 
 <p>Преобразование BASE64URL, отличается от BASE64 преобразования:</p>
 
-<ol>
-<li> Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.
-|BASE64URL| BASE64 |
-|--|--|
-|- (minus)  | + |
-|_ (underline)|/|
-||</li>
-<li> В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
-</ol>
+<ul>
+<li>Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>BASE64URL</th>
+<th>BASE64</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>- (minus)</td>
+<td>+</td>
+</tr>
+<tr>
+<td>_ (underline)</td>
+<td>/</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
+</ul>
 
 <p>В ответе на запрос сервер возвращает JSON-документ, который содержит реквизитный состав подготовленного черновика рублевого платежного поручения в статусе  <strong>Создан</strong>.</p>
 <h2 id='2-13'>2.13 Сервис самоинкассации</h2>
@@ -11810,13 +11951,41 @@ This operation does not require authentication
 
 <p><strong>Передача электронной подписи вместе с документом</strong><span id="resourse_self_encasher_el"></span></p>
 
-<p>Заявление должно быть подписано электронной подписью (ЭП). Для передачи ЭП в теле запроса используется массив digestSignatures, в котором передаются элементы типа Signature:
-| Наименование поля | Тип данных  | Описание поля | О| Пример |
-|--|--|--|--|--|
-| base64Encoded | String |Значение ЭП документа|√|HlaeIHXXEcGT1bFxo1NlpAzpr+kJ2IQrcxVdvDTep 6xjsmD1FDb+6NIyLT+/T24S0mPfVCU75sieOMt71 TBS7w==|
-|certificateUuid|String|Идентификатор сертификата, использованного при создании ЭП ( можно узнать, обратившись к ресурсу <strong>/v1/crypto</strong>)|√|22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6|
-||
-Документ может быть подписан следующими наборами подписей:</p>
+<p>Заявление должно быть подписано электронной подписью (ЭП). Для передачи ЭП в теле запроса используется массив digestSignatures, в котором передаются элементы типа Signature:</p>
+
+<table><thead>
+<tr>
+<th>Наименование поля</th>
+<th>Тип данных</th>
+<th>Описание поля</th>
+<th>О</th>
+<th>Пример</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base64Encoded</td>
+<td>String</td>
+<td>Значение ЭП документа</td>
+<td>√</td>
+<td>HlaeIHXXEcGT1bFxo1NlpAzpr+kJ2IQrcxVdvDTep 6xjsmD1FDb+6NIyLT+/T24S0mPfVCU75sieOMt71 TBS7w==</td>
+</tr>
+<tr>
+<td>certificateUuid</td>
+<td>String</td>
+<td>Идентификатор сертификата, использованного при создании ЭП ( можно узнать, обратившись к ресурсу <strong>/v1/crypto</strong>)</td>
+<td>√</td>
+<td>22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>Документ может быть подписан следующими наборами подписей:</p>
 
 <ul>
 <li>  одна (единственная) подпись,</li>
@@ -12219,7 +12388,6 @@ This operation does not require authentication
 
 <ul>
 <li>  Подписание запроса <a href="#resourse_self_encasher_dop_info">транспортной подписью</a></li>
-<li>  Коды возврата</li>
 </ul>
 
 <p><strong>Ресурс /v1/self-encashers/new-password</strong><span id="resourse_self_encasher_newpass"></span></p>
@@ -12347,7 +12515,6 @@ This operation does not require authentication
 
 <ul>
 <li>  Подписание запроса <a href="#resourse_self_encasher_dop_info">транспортной подписью</a></li>
-<li>  Коды возврата</li>
 </ul>
 
 <p><strong>Дополнительная информация</strong><span id="resourse_self_encasher_dop_info"></span></p>
@@ -12386,18 +12553,38 @@ This operation does not require authentication
 
 <p>Преобразование BASE64URL, отличается от BASE64 преобразования:</p>
 
-<ol>
-<li> Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.
-|BASE64URL| BASE64 |
-|--|--|
-|- (minus)  | + |
-|_ (underline)|/|
-||</li>
-<li> В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
-</ol>
+<ul>
+<li>Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>BASE64URL</th>
+<th>BASE64</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>- (minus)</td>
+<td>+</td>
+</tr>
+<tr>
+<td>_ (underline)</td>
+<td>/</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
+</ul>
 
 <p>В ответе на запрос сервер возвращает JSON-документ, который содержит реквизитный состав подготовленного черновика рублевого платежного поручения в статусе  <strong>Создан</strong>.</p>
-<h2 id='2-14-2012'>2.14 Формирование электронной подписи (ГОСТ 2012)<span id="el_sign_formiration"></span></h2>
+<h2 id='2-14-2012'>2.14 Формирование электронной подписи (ГОСТ 2012)</h2>
+<p><span id="el_sign_formiration"></span></p>
+
 <ul>
 <li>  Запросы необходимо отправлять на http://localhost:28016/vpnkeylocal/<SID2>/, где SID2-идентификатор сессии, получаемый после перехода в бизнес-систему.</li>
 <li>  Подробнее о форматах запроса смотрите &quot;<a href="https://developer.sberbank.ru/doc/files/vpnkeytls505b20_api~doc">VPNKeyTLS505b20_API.doc</a>&quot;.</li>
@@ -12758,7 +12945,6 @@ This operation does not require authentication
 
 <ul>
 <li>  Подписание запроса <a href="#resourse_shipping_tariffs_dop_info">транспортной подписью</a></li>
-<li>  Коды возврата</li>
 </ul>
 
 <p><strong>Дополнительная информация</strong><span id="resourse_shipping_tariffs_dop_info"></span></p>
@@ -12797,15 +12983,33 @@ This operation does not require authentication
 
 <p>Преобразование BASE64URL, отличается от BASE64 преобразования:</p>
 
-<ol>
-<li> Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.
-|BASE64URL| BASE64 |
-|--|--|
-|- (minus)  | + |
-|_ (underline)|/|
-||</li>
-<li> В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
-</ol>
+<ul>
+<li>Используются другие вспомогательные символы <a href="https://tools.ietf.org/html/rfc4648#section-5">Base 64 Encoding with URL and Filename Safe Alphabet</a>.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>BASE64URL</th>
+<th>BASE64</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>- (minus)</td>
+<td>+</td>
+</tr>
+<tr>
+<td>_ (underline)</td>
+<td>/</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>В BASE64URL не используется (опускается) padding, т.е. не добавляются знаки ‘=’ на конце закодированного содержимого  <a href="https://tools.ietf.org/html/rfc4648#section-3.2">Padding of Encoded Data</a></li>
+</ul>
 
 <p>В ответе на запрос сервер возвращает JSON-документ, который содержит реквизитный состав подготовленного черновика рублевого платежного поручения в статусе  <strong>Создан</strong>.</p>
 <h2 id='2-17'>2.17 Уведомление о событии</h2>
@@ -12843,7 +13047,7 @@ This operation does not require authentication
 
 <p>Для создания заявки необходимо отправить PUT-запрос (<strong>/v1/webhooks/{webhookId}</strong>), в котором передать авторизационный токен к данным собственной организации (<strong>Access Token</strong>) и реквизиты заявки. Авторизационный токен передается в параметре  <strong>Authorization</strong>  заголовка запроса.</p>
 
-<p>Чтобы получить доступ к ресурсу, необходимо передать в scope сервис  <strong>WEBHOOK .</strong></p>
+<p>Чтобы получить доступ к ресурсу, необходимо передать в scope сервис  <strong>WEBHOOK.</strong></p>
 
 <p><span id="request_resourse_webhook_id"></span></p>
 
@@ -13302,7 +13506,7 @@ This operation does not require authentication
 
 <p>Ресурс позволяет получить Партнеру уведомление на ранее подписанное событие.</p>
 
-<p>Запрос инициируется на стороне Банка в момент изменения события. Партнеру необходимо реализовать на своей стороне обработку POST-запроса на  <strong>url</strong> - ресурса указанный в заявке на получение  <a href="https://developer.sberbank.ru/doc/v3/sbbol/direct-webhooks#src-3135278226_safe-id-aWQtLjUuMTfQo9Cy0LXQtNC-0LzQu9C10L3QuNC10L7RgdC-0LHRi9GC0LjQuHZOZXdGb3JtYXQudjE1LXJlc291cmNlUHV0">уведомлений</a><strong>.</strong></p>
+<p>Запрос инициируется на стороне Банка в момент изменения события. Партнеру необходимо реализовать на своей стороне обработку POST-запроса на  <strong>url</strong> - ресурса указанный в заявке на получение <a href="#resourse_webhook_id">уведомлений</a>.</p>
 
 <p>Ответ из Банка поступит в формате JWE.</p>
 
@@ -13360,13 +13564,13 @@ This operation does not require authentication
 
 <p>Ресурс позволяет получить Партнеру уведомление на ранее подписанное событие.</p>
 
-<p>Запрос инициируется на стороне Банка в момент изменения события. Партнеру необходимо реализовать на своей стороне обработку POST-запроса на  <strong>url</strong> - ресурса указанный в заявке на получение  <a href="https://developer.sberbank.ru/doc/v3/sbbol/direct-webhooks#src-3135278226_safe-id-aWQtLjUuMTfQo9Cy0LXQtNC-0LzQu9C10L3QuNC10L7RgdC-0LHRi9GC0LjQuHZOZXdGb3JtYXQudjE1LXJlc291cmNlUHV0">уведомлений</a>.</p>
+<p>Запрос инициируется на стороне Банка в момент изменения события. Партнеру необходимо реализовать на своей стороне обработку POST-запроса на  <strong>url</strong> - ресурса указанный в заявке на получение <a href="#resourse_webhook_id">уведомлений</a>.</p>
 
 <p><strong>Ресурс Уведомление о событии (изменение статуса РПП/ИПТ на Исполнен)</strong><span id="resourse_webhook_notif_done"></span></p>
 
 <p>Ресурс позволяет получить Партнеру уведомление на ранее подписанное событие.</p>
 
-<p>Запрос инициируется на стороне Банка в момент изменения события. Партнеру необходимо реализовать на своей стороне обработку POST-запроса на  <strong>url</strong> - ресурса указанный в заявке на получение  <a href="https://developer.sberbank.ru/doc/v3/sbbol/direct-webhooks#src-3135278226_safe-id-aWQtLjUuMTfQo9Cy0LXQtNC-0LzQu9C10L3QuNC10L7RgdC-0LHRi9GC0LjQuHZOZXdGb3JtYXQudjE1LXJlc291cmNlUHV0">уведомлений</a>.</p>
+<p>Запрос инициируется на стороне Банка в момент изменения события. Партнеру необходимо реализовать на своей стороне обработку POST-запроса на  <strong>url</strong> - ресурса указанный в заявке на получение <a href="#resourse_webhook_id">уведомлений</a>.</p>
 <h1 id='schemas'>Schemas</h1>
 <h2 id="tocS_Error">Error</h2>
 
