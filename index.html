@@ -314,6 +314,9 @@
                   <li>
                     <a href="#ca8b71a342" class="toc-h2 toc-link" data-title="Памятка по интеграции">Памятка по интеграции</a>
                   </li>
+                  <li>
+                    <a href="#url-sberbusinessapi" class="toc-h2 toc-link" data-title="Тестовые и промышленные URL SberBusinessAPI">Тестовые и промышленные URL SberBusinessAPI</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -334,7 +337,7 @@
             <a href="#host-2-host" class="toc-h1 toc-link" data-title="Прямая интеграция Host-2-Host  (Получение и отправка документов по своей организации)">Прямая интеграция Host-2-Host  (Получение и отправка документов по своей организации)</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#2-1-sberbusiness-id" class="toc-h2 toc-link" data-title="2.1 Сервис авторизации-SberBusiness ID">2.1 Сервис авторизации-SberBusiness ID</a>
+                    <a href="#2-1-id" class="toc-h2 toc-link" data-title="2.1 Сервис авторизации-Сбер Бизнес ID">2.1 Сервис авторизации-Сбер Бизнес ID</a>
                   </li>
                   <li>
                     <a href="#2-2" class="toc-h2 toc-link" data-title="2.2 Информация об организации">2.2 Информация об организации</a>
@@ -380,9 +383,6 @@
                   </li>
                   <li>
                     <a href="#2-16" class="toc-h2 toc-link" data-title="2.16 Обновление справочника ценовых предложений по международной логистике">2.16 Обновление справочника ценовых предложений по международной логистике</a>
-                  </li>
-                  <li>
-                    <a href="#2-17" class="toc-h2 toc-link" data-title="2.17 Уведомление о событии">2.17 Уведомление о событии</a>
                   </li>
               </ul>
           </li>
@@ -1346,21 +1346,91 @@
 <p>6.4. Документирование результатов проведенных работ и проверок;</p>
 
 <p>6.5. Организацию и проведение мероприятий по усилению безопасности в соответствии с информационными сообщениями, которые направляются Банком официальными письмами, а также публикуются на сайте Банка.</p>
+<h2 id='url-sberbusinessapi'>Тестовые и промышленные URL SberBusinessAPI</h2>
+<p>Адреса для тестирования и работы в промышленном контуре с SberBusinessAPI и Сбер Бизнес ID.</p>
+
+<table><thead>
+<tr>
+<th>Host ТЕСТ</th>
+<th>Host ПРОМ</th>
+<th>Необходимость сертификата TLS</th>
+<th>Описание</th>
+<th>Ресурс</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>https://edupir.testsbi.sberbank.ru:9443</td>
+<td>https://sbi.sberbank.ru:9443</td>
+<td>Нет</td>
+<td>Авторизация пользователя (тип пользователя СМС или тип пользователя неизвестен)</td>
+<td>Сбер Бизнес ID:  GET/ic/sso/api/v2/oauth/authorize?{параметры}</td>
+</tr>
+<tr>
+<td>http://localhost:28016</td>
+<td>http://localhost:28016</td>
+<td>Работа клиента через устройство VPNkey-TLS</td>
+<td>Авторизация пользователя (тип пользователя Token)</td>
+<td>Сбер Бизнес ID:  GET/ic/sso/api/v2/oauth/authorize?{параметры}</td>
+</tr>
+<tr>
+<td>https://edupirfintech.sberbank.ru:9443</td>
+<td>https://fintech.sberbank.ru:9443</td>
+<td>Да</td>
+<td>Back-to-Back взаимодействия</td>
+<td>Сбер Бизнес ID:  POST/ic/sso/api/v1/change-client-secret  POST/ic/sso/api/v2/oauth/token  GET/ic/sso/api/v1/oauth/user-info  SberBusinessAPI:  GET/fintech/api/v1/client-info  GET/fintech/api/v1/crypto  POST/fintech/api/v1/crypto/cert-requests  POST/fintech/api/v1/crypto/cert-requests/{externalId}/activate  GET/fintech/api/v1/crypto/cert-requests/{externalId}/state  GET/fintech/api/v1/crypto/eio  POST/fintech/api/v1/crypto/cert-requests/eio  GET/fintech/api/v1/crypto/cert-requests/eio/{externalId}/state  POST/fintech/api/v1/crypto/cert-requests/eio/{externalId}/activate  PUT/fintech/api/v1/client-tariffs  POST/fintech/api/v1/client-accruals  GET/fintech/api/v1/client-accruals/{externalId}  GET/fintech/api/v1/partner-info/advance-acceptances  GET/fintech/api/v1/partner-info/offer  POST/fintech/api/v1/payment-requests/outgoing  GET/fintech/api/v1/payment-requests/outgoing/{externalId}/state  POST/fintech/api/v1/payments  POST/fintech/api/v1/payments/from-invoice  POST/fintech/api/v1/payments/from-invoice-any  GET/fintech/api/v1/payments/{externalId}/state  GET/fintech/api/v1/payments/{externalId}  POST/fintech/api/v1/periodic-payments/to-partner  GET/fintech/api/v1/periodic-payments/{externalId}/state  GET/fintech/api/v1/statement/summary  GET/fintech/api/v1/statement/transactions  POST/fintech/api/v1/cash-hold/hold  GET/fintech/api/v1/cash-hold/hold/{externalId}/state  POST/fintech/api/v1/cash-hold/unhold  GET/fintech/api/v1/cash-hold/unhold/{externalId}/state  POST/fintech/api/v1/cash-hold/unhold-transfer  GET/fintech/api/v1/cash-hold/unhold-transfer/{externalId}/state  PUT/fintech/api/v1/webhooks/{webhookId}  GET/fintech/api/v1/correspondents/cur  GET/fintech/api/v1/correspondents/rur  PUT/fintech/api/v1/correspondents/cur/{externalId}/additional  POST/fintech/api/v1/tariff-plans/activation  GET/fintech/api/v1/tariff-plans/list-activated  GET/fintech/api/v1/tariff-plans/list-available  POST/fintech/api/v1/credit/credit-requests  POST/fintech/api/v1/files/download  GET/fintech/api/v1/files/downloadstate  GET/fintech/api/v1/payments-registry  PUT/fintech/api/v1/payments-registry/{externalId}/change-state  POST/fintech/api/v1/salary-agreement-requests  GET/fintech/api/v1/salary-agreement-requests/{externalId}/state  POST/fintech/api/v1/card-issues  GET/fintech/api/v1/card-issues/{externalId}/state  GET/fintech/api/v1/card-issues/{externalId}  GET/fintech/api/v1/salary-agreements  POST/fintech/api/v1/payrolls  GET/fintech/api/v1/payrolls/{externalId}/state  GET/fintech/api/v1/payrolls/{externalId}  POST/fintech/api/v1/debt-registries  GET/fintech/api/v1/debt-registries/{externalId}/state  POST/fintech/api/v1/files/upload  GET/fintech/api/v1/files/upload/{fileId}/state  POST/fintech/api/v1/generic-letters/to-bank  GET/fintech/api/v1/generic-letters/to-bank/{externalId}/state  GET/fintech/api/v1/generic-letters/to-bank/{externalId}  GET/fintech/api/v1/generic-letters/from-bank  POST/fintech/api/v1/confirmatory-documents-inquiries  GET/fintech/api/v1/confirmatory-documents-inquiries/{externalId}/state  GET/fintech/api/v1/confirmatory-documents-inquiries/{externalId}  POST/fintech/api/v1/currency-operation-details  GET/fintech/api/v1/currency-operation-details/{externalId}/state  GET/fintech/api/v1/currency-operation-details/{externalId}  POST/fintech/api/v1/curr-control-messages/to-bank  GET/fintech/api/v1/curr-control-messages/to-bank/{externalId}/state  GET/fintech/api/v1/curr-control-messages/from-bank  GET/fintech/api/v1/currency-notices  POST/fintech/api/v1/bank-control-statements/reg-curr-contracts  GET/fintech/api/v1/bank-control-statements/{externalId}/state  GET/fintech/api/v1/bank-control-statements/reg-curr-contracts/{externalId}  POST/fintech/api/v1/bank-control-statements/reg-curr-cred-contracts  GET/fintech/api/v1/bank-control-statements/{externalId}/state  GET/fintech/api/v1/bank-control-statements/reg-curr-cred-contracts/{externalId}  POST/fintech/api/v1/bank-control-statements/change-curr-contracts  POST/fintech/api/v1/bank-control-statements/change-curr-cred-contracts  GET/fintech/api/v1/bank-control-statements/change-applications/{externalId}/state  POST/fintech/api/v1/pay-doc-cur  GET/fintech/api/v1/pay-doc-cur/{externalId}/state  GET/fintech/api/v1/pay-doc-cur/{externalId}  POST/fintech/api/v1/curr-buy  GET/fintech/api/v1/curr-buy/{externalId}/state  GET/fintech/api/v1/curr-buy/{externalId}  POST/fintech/api/v1/curr-sell  GET/fintech/api/v1/curr-sell/{externalId}/state  GET/fintech/api/v1/curr-sell/{externalId}  POST/fintech/api/v1/orders-mandatory-sale  GET/fintech/api/v1/orders-mandatory-sale/{externalId}/state  GET/fintech/api/v1/orders-mandatory-sale/{externalId}  POST/fintech/api/v1/collection-orders  GET/fintech/api/v1/collection-orders/{externalId}/state  GET/fintech/api/v1/collection-orders/{externalId}  POST/fintech/api/v1/acceptance-letters  GET/fintech/api/v1/acceptance-letters/{externalId}/state  GET/fintech/api/v1/payment-requests/incoming  GET/fintech/api/v1/payment-requests/incoming/{externalId}/state  GET/fintech/api/v1/encash/encash-contracts  POST/fintech/api/v1/encash/encash-add-requests  GET/fintech/api/v1/encash/encash-add-requests/{externalId}/state  GET/fintech/api/v1/encash/encashment-offers  POST/fintech/api/v1/encash/encashment-offers/{externalId}/acceptance  POST/fintech/api/v1/self-encashers-requests  GET/fintech/api/v1/self-encashers-requests/{externalId}/state  GET/fintech/api/v1/self-encashers-requests/{externalId}  POST/fintech/api/v1/self-encashers/block  POST/fintech/api/v1/self-encashers/new-password</td>
+</tr>
+<tr>
+<td>https://edupir.testsbi.sberbank.ru:9443</td>
+<td>https://sbi.sberbank.ru:9443</td>
+<td>Нет</td>
+<td>Открыть форму оплаты счета (тип пользователя СМС)</td>
+<td>GET /ic/dcb/index.html#/payment-creator/{externalId из ответа по статусу документа}?backUrl={адрес возврата клиента после оплаты}</td>
+</tr>
+<tr>
+<td>https://edupir.testsbi.sberbank.ru:9443</td>
+<td>https://sbi.sberbank.ru:9443</td>
+<td>Нет</td>
+<td>Войти в СББОЛ (тип пользователя СМС)</td>
+<td>GET /ic/dcb</td>
+</tr>
+<tr>
+<td>http://localhost:28016</td>
+<td>http://localhost:28016</td>
+<td>Работа клиента через устройство VPNkey-TLS</td>
+<td>Открыть форму оплаты счета (тип пользователя СМС)</td>
+<td>GET /ic/dcb/index.html#/payment-creator/{externalId из ответа по статусу документа}?backUrl={адрес возврата клиента после оплаты}</td>
+</tr>
+<tr>
+<td>http://localhost:28016</td>
+<td>http://localhost:28016</td>
+<td>Работа клиента через устройство VPNkey-TLS</td>
+<td>Войти в СББОЛ (тип пользователя Токен)</td>
+<td>GET /ic/dcb</td>
+</tr>
+<tr>
+<td>https://edupirfintech.sberbank.ru:9443</td>
+<td></td>
+<td>Да</td>
+<td>Swagger UI</td>
+<td>GET /fintech/api/swagger-ui.html</td>
+</tr>
+</tbody></table>
 <h1 id='sberbusinessapi'>Личный кабинет SberBusinessAPI</h1>
 <p>В Личном кабинете SberBusinessAPI доступны методы:</p>
 
 <ul>
-<li><a href="#salary_agreem_req">SALARY_AGREEMENT_REQUEST. Заявка на удаленное подключение Зарплатного проекта</a>;</li>
-<li><a href="#crypto">CERTIFICATE_REQUEST. Запрос на сертификат</a>;</li>
-<li><a href="#rpp">PAY_DOC_RU. Рублёвое платёжное поручение</a>;</li>
-<li><a href="#zp">SALARY_AGREEMENT. Зарплатный договор</a>;</li>
-<li>PAY_DOC_CUR. Валютное платежное поручение;</li>
-<li>GENERIC_LETTER_FROM_BANK. Письмо свободного формата (из банка);</li>
-<li><a href="#get_client_info">GET_CLIENT_ACCOUNTS. Получение информации о счетах подключенного клиента</a>;</li>
-<li><a href="#get_statement">GET_STATEMENT_ACCOUNT. Получение выписки по счёту клиента</a>;</li>
-<li><a href="#zp">PAYROLL. Зарплатная ведомость</a>;</li>
-<li><a href="#crypto">GET_CRYPTO_INFO. Получение криптоинформации (КУЦ, криптопрофили и т.д.)</a>;</li>
-<li><a href="#get_dict">DICT. Справочник</a>.</li>
+<li><a href="#authorization_sbbusid">Авторизация Сбер Бизнес ID</a>;</li>
+<li><a href="#salary_agreem_req">Заявка на удаленное подключение Зарплатного проекта</a>;</li>
+<li><a href="#crypto">Запрос на сертификат</a>;</li>
+<li><a href="#rpp">Рублёвое платёжное поручение</a>;</li>
+<li><a href="#zp">Зарплатный договор</a>;</li>
+<li>Валютное платежное поручение;</li>
+<li>Письмо свободного формата (из банка);</li>
+<li><a href="#get_client_info">Получение информации о счетах подключенного клиента</a>;</li>
+<li><a href="#get_statement">Получение выписки по счёту клиента</a>;</li>
+<li><a href="#zp">Зарплатная ведомость</a>;</li>
+<li><a href="#crypto">Получение криптоинформации (КУЦ, криптопрофили и т.д.)</a>;</li>
+<li><a href="#get_dict">Справочник</a>.</li>
 </ul>
 
 <p>Чтобы получить доступ к Личному кабинету SberBusinessAPI, оставьте заявку на <a href="https://www.sberbank.ru/ru/legal/finapi">сайте</a>. </p>
@@ -1400,7 +1470,7 @@
 
 <p>2.3. Нажмите <strong>Создать</strong> и подпишите электронной подписью.</p>
 
-<p>Для подписания заявления ЭП должна быть с полномочиями ЕИО (Единоличный исполнительный орган) или единственная подпись.<br>
+<p>Для подписания заявления ЭП должна быть с полномочиями ЕИО (Единоличный исполнительный орган).<br>
 <img src="images/application2-118237a0.png" alt="enter image description here" /></p>
 
 <p><strong>Шаг 3. Настройка тестового полигона</strong><span id="settings-test"></span></p>
@@ -1693,13 +1763,11 @@
 <li><strong>Refresh Token</strong> — токен обмена, который предназначен для получения нового Access Token и Refresh Token в случае компрометации или истечения времени жизни Access Token.</li>
 <li><strong>redirect_uri</strong> — маска адреса по которой пользователь будет перенаправлен с кодом авторизации (допускается совпадение redirect_uri с URL сервиса).</li>
 <li><strong>scope</strong> — должен содержать обязательный параметр &quot;openid&quot; и через пробел перечисляются scope-ы доступных claim и сервисов, полученных от менеджера партнёра при регистрации приложения (обязательный параметр при обращении к ресурсу).</li>
-<li><strong>Клиент</strong> — вы получаете информацию по своей компании через SberBusinessAPI.</li>
-<li><strong>Партнер</strong> — вы подключаете SberBusinessAPI к своей платформе и оказываете услуги третьим юридическим лицам.</li>
-<li><strong>Холдинг</strong> — вы собираете информацию через SberBusinessAPI по третьим юридическим лицам, которые входят в вашу группу компаний.</li>
+<li><strong>Прямая Интеграция Host-2-Host</strong> — вы получаете информацию по своей компании через SberBusinessAPI.<br></li>
 </ul>
 <h1 id='host-2-host'>Прямая интеграция Host-2-Host  (Получение и отправка документов по своей организации)</h1>
-<p><span id="9894727556d88e0"></span></p>
-<h2 id='2-1-sberbusiness-id'>2.1 Сервис авторизации-SberBusiness ID</h2>
+<p><span id="e8d7cff10b46bd1"></span></p>
+<h2 id='2-1-id'>2.1 Сервис авторизации-Сбер Бизнес ID</h2>
 <p><span id="authorization_sbbusid"></span></p>
 
 <p><strong>Общая информация</strong></p>
@@ -1734,7 +1802,9 @@ SberBusinessAPI позволяет идентифицировать пользо
 </ul>
 
 <p>В случае возникновения ошибок работы сервиса, для анализа вопроса, Банком будут запрошены логи обмена со стороны сервиса. Рекомендуем реализовать логирование всех взаимодействий с Банком с фиксацией отправляемых/получаемых пакетов.</p>
-<h3 id='2-1-1'>2.1.1 Авторизация пользователя<span id="authorization_user"></span></h3>
+<h3 id='2-1-1'>2.1.1 Авторизация пользователя</h3>
+<p><span id="authorization_user"></span></p>
+
 <p><a href="#authorize_code">GET /v2/oauth/authorize-Код авторизации</a></p>
 
 <p><a href="#authorize_token">POST /v2/oauth/token-Авторизационный токен</a></p>
@@ -1743,6 +1813,15 @@ SberBusinessAPI позволяет идентифицировать пользо
 
 <p><a href="#authorize_change_clsec">POST /v1/change-client-secret-Смена авторизационного ключа</a>
 <img src="images/Schema-b8961ea5.png" alt="enter image description here" /></p>
+
+<p><strong>Смс пользователь</strong> — пользователь, который использует SMS-подтверждение (одноразовый SMS-пароль).</p>
+
+<p><strong>Токен пользователь</strong> — пользователь, который использует устройство защиты (токен).</p>
+
+<p>Смс и токен пользователям можно установить три типа подписи:<br>
+- Первая.<br>
+- Вторая.<br>
+- Единственная.  </p>
 
 <p>Для авторизации ( <strong>/v2/oauth/authorize</strong> ) смс пользователя необходимо отправлять запрос на:</p>
 
@@ -1773,23 +1852,26 @@ SberBusinessAPI позволяет идентифицировать пользо
 
 <p>3. После авторизации в интерфейсе токена необходимо выбрать БС EDUPIR (бизнес система тестового стенда EDUPIR) и авторизоваться в СББОЛ.</p>
 
-<p>4. Для возможности подписывать документы необходимо выпустить сертификат ЭП:
-    4.1. Через интерфейс СББОЛ по документации https://www.sberbank.ru/help/business/sbbol/100080
-    4.2. Через SberBusiness API по <a href="#crypto">документации</a></p>
+<p>4. Для возможности подписывать документы необходимо выпустить сертификат ЭП:<br>
+    4.1. Через интерфейс СББОЛ по <a href="https://www.sberbank.ru/help/business/sbbol/100080">документации</a>.<br>
+    4.2. Через SberBusiness API по <a href="#crypto">документации</a>.  </p>
 
-<p>5. После создания запроса необходимо отправить информацию в поддержку <a href="mailto:supportdbo2@sberbank.ru">supportdbo2@sberbank.ru</a>, для регистрации сертификата в УЦ Банка, в формате:
-- Стенд:EDUPIR
-- ClientId и логин тестового пользователя
-- BicryptID (КУЦ + номер сертификата)
-- Логин владельца сертификата или название организации
-- Дата отправки запроса на сертификат
-- Текст/Комментарий: (при необходимости)</p>
+<p>5. После создания запроса необходимо отправить информацию в поддержку <a href="mailto:supportdbo2@sberbank.ru">supportdbo2@sberbank.ru</a>, для регистрации сертификата в УЦ Банка, в формате:   </p>
+
+<ul>
+<li>Стенд:EDUPIR</li>
+<li>ClientId и логин тестового пользователя</li>
+<li>BicryptID (КУЦ + номер сертификата)</li>
+<li>Логин владельца сертификата или название организации</li>
+<li>Дата отправки запроса на сертификат</li>
+<li>Текст/Комментарий: (при необходимости)</li>
+</ul>
 
 <p>6. После регистрации в УЦ поступит ответ от <a href="mailto:supportdbo2@sberbank.ru">supportdbo2@sberbank.ru</a> о готовности сертификата.</p>
 
-<p>7. Необходимо активировать сертификат:
-    7.1. Через интерфейс СББОЛ по документации https://www.sberbank.ru/help/business/sbbol/100080
-    7.2. Через SberBusiness API по <a href="#crypto">документации</a></p>
+<p>7. Необходимо активировать сертификат:<br>
+    7.1. Через интерфейс СББОЛ по <a href="https://www.sberbank.ru/help/business/sbbol/100080">документации</a>.<br>
+    7.2. Через SberBusiness API по <a href="#crypto">документации</a>.  </p>
 
 <p>8. Сертификат активирован и готов к работе.</p>
 
@@ -1797,9 +1879,9 @@ SberBusinessAPI позволяет идентифицировать пользо
 
 <p>Если вы работаете с сервисами авторизации версии  <strong>v1</strong>, нажмите  <a href="https://developer.sberbank.ru/doc/v3/sbbol/direct-int-v1-oauth-authorization">здесь</a>.</p>
 
-<p>Для получения возможности работы пользователя через ваш сервис необходимо получить разрешение на выполнение операции от имени пользователя СББОЛ - пройти авторизацию. Для этого необходимо перенаправить пользователя на oauth-сервер SberBusiness ID.</p>
+<p>Для получения возможности работы пользователя через ваш сервис необходимо получить разрешение на выполнение операции от имени пользователя СББОЛ - пройти авторизацию. Для этого необходимо перенаправить пользователя на oauth-сервер Сбер Бизнес ID.</p>
 
-<p>При первом переходе пользователя дочерней организации на SberBusiness ID ему будет предложено подписать оферту, дающую право сервису на отправку запросов по организации пользователя.</p>
+<p>При первом переходе пользователя дочерней организации на Сбер Бизнес ID ему будет предложено подписать оферту, дающую право сервису на отправку запросов по организации пользователя.</p>
 
 <blockquote>
 <p>Пример запроса с экранированием</p>
@@ -2014,7 +2096,7 @@ This operation does not require authentication
 </tr>
 <tr>
 <td>accounts</td>
-<td>Счет, БИК, Кор. счет компании. <strong>Примечание:</strong> не заполняется при запросе Партнёром информации о пользователе своей организации.</td>
+<td>Счет, БИК, Кор. счет компании.  <strong>Примечание:</strong>не заполняется при запросе Партнёром информации о пользователе своей организации.</td>
 </tr>
 <tr>
 <td>terBank</td>
@@ -3396,7 +3478,7 @@ This operation does not require authentication
 
 <p><strong>Ресурс /v1/client-info</strong></p>
 
-<p>Ресурс позволяет получить расширенную информацию об организации пользователя и её счетах (если пользователь дал согласие на доступ к своим данным см. <a href="#authorization_sbbusid">2.1 Сервис авторизации-SberBusiness ID</a>), которая может включить в себя следующие данные:</p>
+<p>Ресурс позволяет получить расширенную информацию об организации пользователя и её счетах (если пользователь дал согласие на доступ к своим данным см. <a href="#authorization_sbbusid">2.1 Сервис авторизации-Сбер Бизнес ID</a>), которая может включить в себя следующие данные:</p>
 
 <ul>
 <li>  сокращённое наименование организации;</li>
@@ -3410,7 +3492,7 @@ This operation does not require authentication
 <li>  полный адрес организации.</li>
 </ul>
 
-<p>Сокращённую информацию о пользователе можно получить через запрос пользовательских данных (ресурс  <strong>/v1/oauth/user-info</strong>  в разделе <a href="#authorization_sbbusid">2.1 Сервис авторизации-SberBusiness ID</a>.Информация по счетам пользователя передаётся только в том в случае, когда при подписании оферты пользователь в явном виде указал номера счетов, по которым разрешает передачу информации.</p>
+<p>Сокращённую информацию о пользователе можно получить через запрос пользовательских данных (ресурс  <strong>/v1/oauth/user-info</strong>  в разделе <a href="#authorization_sbbusid">2.1 Сервис авторизации-Сбер Бизнес ID</a>.Информация по счетам пользователя передаётся только в том в случае, когда при подписании оферты пользователь в явном виде указал номера счетов, по которым разрешает передачу информации.</p>
 
 <p><strong>Шаги</strong></p>
 
@@ -9462,7 +9544,7 @@ This operation does not require authentication
 
 <ol>
 <li> Получить <a href="#authorization_user">AccessToken</a></li>
-<li> Отправить <a href="#9894727556d88e0">запрос</a></li>
+<li> Отправить <a href="#e8d7cff10b46bd1">запрос</a></li>
 </ol>
 
 <p>Для получения статуса, необходимо отправить GET-запрос (<strong>/v1/debt-registries/{externalId}/state</strong>), в котором передать авторизационный токен (<strong>Access Token</strong>) и идентификатор документа (<strong>externalId</strong>). Авторизационный токен передается в параметре  <strong>Authorization</strong>  заголовка запроса.</p>
@@ -14597,565 +14679,6 @@ This operation does not require authentication
 </ul>
 
 <p>В ответе на запрос сервер возвращает JSON-документ, который содержит реквизитный состав подготовленного черновика рублевого платежного поручения в статусе  <strong>Создан</strong>.</p>
-<h2 id='2-17'>2.17 Уведомление о событии</h2>
-<p><a href="#resourse_webhook_id">PUT /v1/webhooks/{webhookId} - Создание заявки на получение уведомления о событии</a></p>
-
-<p><a href="#resourse_webhook">GET /v1/webhooks - Получение списка заявок на уведомление о событии</a></p>
-
-<p><a href="#resourse_webhook_delete">DELETE /v1/webhooks/{webhookId} - Удаление созданной заявки</a></p>
-
-<p><a href="#resourse_webhook_notif">POST Уведомление о событии (Операции выписки)</a></p>
-
-<p><a href="#resourse_webhook_notif_ident">POST Уведомление о событии (Идентификаторы операций по выписке)</a></p>
-
-<p><a href="#resourse_webhook_notif_done">POST Уведомление о событии (изменение статуса РПП/ИПТ на Исполнен)</a></p>
-
-<p><img src="images/Webhooks-5e2e6321.jpg" alt="enter image description here" /></p>
-
-<p>Для обращения к ресурсам  необходимо отправлять запрос на:</p>
-
-<ul>
-<li>  Тестовый контур  <a href="https://edupirfintech.sberbank.ru:9443/">https://edupirfintech.sberbank.ru:9443</a></li>
-<li>  Промышленный контур  <a href="https://fintech.sberbank.ru:9443/">https://fintech.sberbank.ru:9443</a></li>
-</ul>
-
-<p><strong>Ресурс /v1/webhooks/{webhookId}</strong><span id="resourse_webhook_id"></span></p>
-
-<p>Ресурс позволяет Партнеру создать заявку на получение уведомления о событии.</p>
-
-<p><strong>Шаги</strong></p>
-
-<ol>
-<li> Получить <a href="#authorization_user">AccessToken</a></li>
-<li> Отправить <a href="#request_resourse_webhook_id">запрос</a></li>
-</ol>
-
-<p>Для создания заявки необходимо отправить PUT-запрос (<strong>/v1/webhooks/{webhookId}</strong>), в котором передать авторизационный токен к данным собственной организации (<strong>Access Token</strong>) и реквизиты заявки. Авторизационный токен передается в параметре  <strong>Authorization</strong>  заголовка запроса.</p>
-
-<p>Чтобы получить доступ к ресурсу, необходимо передать в scope сервис  <strong>WEBHOOK.</strong></p>
-
-<p><span id="request_resourse_webhook_id"></span></p>
-
-<p><a id="opIdsaveWebhookUsingPUT"></a></p>
-
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
-curl <span class="nt">-X</span> PUT /localhost:8080/fintech/api/v1/webhooks/<span class="o">{</span>webhookId<span class="o">}</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Accept: */*'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: string'</span>
-
-</code></pre></div>
-<p><code>PUT /v1/webhooks/{webhookId}</code></p>
-
-<blockquote>
-<p>Body parameter</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payment.implemented"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"formatVersion"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"requestContentType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.partner.ru/webhooks"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"webhookId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="savewebhookusingput-parameters">Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Authorization</td>
-<td>header</td>
-<td>string</td>
-<td>true</td>
-<td>Access token организации-клиента, полученный через SSO</td>
-</tr>
-<tr>
-<td>webhookId</td>
-<td>path</td>
-<td>string</td>
-<td>true</td>
-<td>Идентификатор заявки (UUID)</td>
-</tr>
-<tr>
-<td>body</td>
-<td>body</td>
-<td><a href="#schemawebhook">Webhook</a></td>
-<td>true</td>
-<td>Заявка на получение уведомлений о событии</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Example responses</p>
-
-<p>200 Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payment.implemented"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"formatVersion"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"requestContentType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.partner.ru/webhooks"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"webhookId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="savewebhookusingput-responses">Responses</h3>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
-<td>OK</td>
-<td><a href="#schemawebhook">Webhook</a></td>
-</tr>
-<tr>
-<td>400</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
-<td>Ошибка в запросе или его жизненном цикле</td>
-<td><a href="#schemaresourcefault">ResourceFault</a></td>
-</tr>
-<tr>
-<td>401</td>
-<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Не авторизован</td>
-<td><a href="#schemanotice">Notice</a></td>
-</tr>
-<tr>
-<td>403</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
-<td>Запрещено</td>
-<td><a href="#schemanotice">Notice</a></td>
-</tr>
-<tr>
-<td>500</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
-<td>Внутренняя ошибка сервера</td>
-<td><a href="#schemanotice">Notice</a></td>
-</tr>
-<tr>
-<td>503</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.4">Service Unavailable</a></td>
-<td>Сервис временно недоступен</td>
-<td><a href="#schemanotice">Notice</a></td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-<p><strong>Доступные события (Расширяемый список)</strong></p>
-
-<table><thead>
-<tr>
-<th>№</th>
-<th>Системное имя события</th>
-<th>Описание</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>1</td>
-<td>payment.implemented</td>
-<td>Рублевое платежное поручение перешло в статус Исполнен (IMPLEMENTED)</td>
-</tr>
-<tr>
-<td>2</td>
-<td>paymentrequest.implemented</td>
-<td>Исходящее платежное требование перешло в статус Исполнен (IMPLEMENTED)</td>
-</tr>
-<tr>
-<td>3</td>
-<td>statement.transactions</td>
-<td>Операции по выписке</td>
-</tr>
-<tr>
-<td>4</td>
-<td>userlogin.web</td>
-<td>Авторизация пользователя в веб-канале</td>
-</tr>
-<tr>
-<td>5</td>
-<td>statement.transaction.ids</td>
-<td>Идентификаторы операций по выписке</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-
-<p><strong>Ресурс /v1/webhooks</strong><span id="resourse_webhook"></span></p>
-
-<p>Ресурс позволяет Партнеру получить список созданных заявок на получение уведомлений о событиях.</p>
-
-<p><strong>Шаги</strong></p>
-
-<ol>
-<li> Получить <a href="#authorization_user">AccessToken</a></li>
-<li> Отправить <a href="#request_resourse_webhook">запрос</a></li>
-</ol>
-
-<p>Для списка необходимо отправить GET-запрос (<strong>/v1/webhooks</strong>), в котором передать авторизационный токен к данным собственной организации (<strong>Access Token</strong>). Авторизационный токен передается в параметре  <strong>Authorization</strong>  заголовка запроса.</p>
-
-<p>Чтобы получить доступ к ресурсу, необходимо передать в scope сервис  <strong>WEBHOOK .</strong></p>
-
-<p><span id="request_resourse_webhook"></span></p>
-
-<p><a id="opIdgetWebhooksUsingGET"></a></p>
-
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
-curl <span class="nt">-X</span> GET /localhost:8080/fintech/api/v1/webhooks <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Accept: */*'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: string'</span>
-
-</code></pre></div>
-<p><code>GET /v1/webhooks</code></p>
-
-<h3 id="getwebhooksusingget-parameters">Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Authorization</td>
-<td>header</td>
-<td>string</td>
-<td>true</td>
-<td>Access token организации-клиента, полученный через SSO</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Example responses</p>
-
-<p>200 Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payment.implemented"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"formatVersion"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"requestContentType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.partner.ru/webhooks"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"webhookId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h3 id="getwebhooksusingget-responses">Responses</h3>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
-<td>OK</td>
-<td>Inline</td>
-</tr>
-<tr>
-<td>400</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
-<td>Ошибка в запросе или его жизненном цикле</td>
-<td><a href="#schemaresourcefault">ResourceFault</a></td>
-</tr>
-<tr>
-<td>401</td>
-<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Не авторизован</td>
-<td><a href="#schemanotice">Notice</a></td>
-</tr>
-<tr>
-<td>403</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
-<td>Запрещено</td>
-<td><a href="#schemanotice">Notice</a></td>
-</tr>
-<tr>
-<td>500</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
-<td>Внутренняя ошибка сервера</td>
-<td><a href="#schemanotice">Notice</a></td>
-</tr>
-<tr>
-<td>503</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.4">Service Unavailable</a></td>
-<td>Сервис временно недоступен</td>
-<td><a href="#schemanotice">Notice</a></td>
-</tr>
-</tbody></table>
-
-<h3 id="getwebhooksusingget-responseschema">Response Schema</h3>
-
-<p>Status Code <strong>200</strong></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><em>anonymous</em></td>
-<td>[<a href="#schemawebhook">Webhook</a>]</td>
-<td>false</td>
-<td>none</td>
-<td>Заявка на получение уведомлений о событии</td>
-</tr>
-<tr>
-<td>event</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>Событие</td>
-</tr>
-<tr>
-<td>formatVersion</td>
-<td>integer(int64)</td>
-<td>true</td>
-<td>none</td>
-<td>Версия формата ответа</td>
-</tr>
-<tr>
-<td>requestContentType</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>Тип содержимого запроса</td>
-</tr>
-<tr>
-<td>url</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>URL отправки уведомления о событии</td>
-</tr>
-<tr>
-<td>webhookId</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>Идентификатор заявки, присвоенный партнёром (UUID)</td>
-</tr>
-</tbody></table>
-<h4 id='enumerated-values-4'>Enumerated Values</h4>
-<table><thead>
-<tr>
-<th>Property</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>event</td>
-<td>payment.implemented</td>
-</tr>
-<tr>
-<td>event</td>
-<td>paymentrequest.implemented</td>
-</tr>
-<tr>
-<td>event</td>
-<td>statement.transactions</td>
-</tr>
-<tr>
-<td>event</td>
-<td>statement.transactions.ids</td>
-</tr>
-<tr>
-<td>event</td>
-<td>userlogin.web</td>
-</tr>
-<tr>
-<td>requestContentType</td>
-<td>application/json</td>
-</tr>
-<tr>
-<td>requestContentType</td>
-<td>application/jose</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-<p><strong>Ресурс /v1/webhooks/{webhookId}</strong><span id="resourse_webhook_delete"></span></p>
-
-<p>Ресурс позволяет Партнеру удалить созданную заявку на получение уведомления о событии.</p>
-
-<p><strong>Шаги</strong></p>
-
-<ol>
-<li> Получить <a href="#authorization_user">AccessToken</a></li>
-<li> Отправить <a href="#request_resourse_webhook_delete">запрос</a></li>
-</ol>
-
-<p>Для удаления заявки необходимо отправить DELETE-запрос (<strong>/v1/webhooks/{webhookId}</strong>), в котором передать авторизационный токен к данным собственной организации (<strong>Access Token</strong>) и идентификатор заявки. Авторизационный токен передается в параметре  <strong>Authorization</strong>  заголовка запроса.</p>
-
-<p>Чтобы получить доступ к ресурсу, необходимо передать в scope сервис  <strong>WEBHOOK .</strong></p>
-
-<p><span id="request_resourse_webhook_delete"></span></p>
-
-<p><a id="opIddeleteWebhookUsingDELETE"></a></p>
-
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
-curl <span class="nt">-X</span> DELETE /localhost:8080/fintech/api/v1/webhooks/<span class="o">{</span>webhookId<span class="o">}</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: string'</span>
-
-</code></pre></div>
-<p><code>DELETE /v1/webhooks/{webhookId}</code></p>
-
-<h3 id="deletewebhookusingdelete-parameters">Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Authorization</td>
-<td>header</td>
-<td>string</td>
-<td>true</td>
-<td>Access token организации-клиента, полученный через SSO</td>
-</tr>
-<tr>
-<td>webhookId</td>
-<td>path</td>
-<td>string</td>
-<td>true</td>
-<td>Идентификатор заявки (UUID)</td>
-</tr>
-</tbody></table>
-
-<h3 id="deletewebhookusingdelete-responses">Responses</h3>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>204</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.5">No Content</a></td>
-<td>No Content</td>
-<td>None</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-<p><strong>Ресурс Уведомление о событии (Операции выписки)</strong><span id="resourse_webhook_notif"></span></p>
-
-<p>Ресурс позволяет получить Партнеру уведомление на ранее подписанное событие.</p>
-
-<p>Запрос инициируется на стороне Банка в момент изменения события. Партнеру необходимо реализовать на своей стороне обработку POST-запроса на  <strong>url</strong> - ресурса указанный в заявке на получение <a href="#resourse_webhook_id">уведомлений</a>.</p>
-
-<p>Ответ из Банка поступит в формате JWE.</p>
-
-<p><strong>Формирование JOSE в представлении JWE Compact Serialization</strong></p>
-
-<p>Если заголовок  <strong>Content-Type</strong>  имеет значение  <strong>application/jose</strong>, то тело запроса содержит объект JOSE сформированный в виде компактной сериализации  <strong>JWE</strong>  по международной спецификации  <a href="https://tools.ietf.org/html/rfc7516">RFC 7516: JSON Web Encryption (JWE)</a>.</p>
-
-<p><strong>JWE</strong>  состоит из пяти частей:</p>
-
-<ul>
-<li><p>Защищенный заголовок (<strong>Protected Header</strong>)</p></li>
-<li><p>Ключ шифрования (<strong>Encrypted Key</strong>)</p></li>
-<li><p>Вектор инициализации (<strong>Initialization Vector</strong>)</p></li>
-<li><p>Зашифрованный текст (<strong>Ciphertext</strong>)</p></li>
-<li><p>Тег аутентификации (<strong>Authentication Tag</strong>)</p></li>
-</ul>
-
-<p>и формируется как BASE64URL(UTF8(JWE  <strong>Protected Header</strong>)) || &#39;.&#39; || BASE64URL(JWE  <strong>Encrypted Key</strong>) || &#39;.&#39; || BASE64URL(JWE  <strong>Initialization Vector</strong>) || &#39;.&#39; || BASE64URL(JWE  <strong>Ciphertext</strong>) || &#39;.&#39; || BASE64URL(JWE  <strong>Authentication Tag</strong>)</p>
-
-<p>Защищенный заголовок (<strong>Protected Header</strong>)</p>
-
-<p>JSON-объект, содержащий тип токена, в данном случае  <strong>JOSE</strong>; алгоритм шифрования текста, в данном случае  <strong>gost34.10-2012</strong>; и  <strong>UUID</strong>  сертификата криптопрофиля, которым зашифрован текст, в данном случае сертификат криптопрофиля пользователя клиента.<br>
-Пример:<br>
-{</p>
-
-<p>&quot;typ&quot;: &quot;JOSE&quot;,</p>
-
-<p>&quot;enc&quot;: &quot;gost34.10-2012&quot;,</p>
-
-<p>&quot;kid&quot;: &quot;b994381d-d886-4b5a-9407-1672952610aa&quot;</p>
-
-<p>}</p>
-
-<p>Ключ шифрования (<strong>Encrypted Key</strong>)</p>
-
-<p>Т.к. для шифрования были использованы известные и уже имеющиеся как на стороне клиента так и на стороне Банка сертификаты (сертификат криптопрофиля пользователя клиента, кому отправляем уведомление), то ключ шифрования в компактной сериализации JWE не передавался и был указан как пустая последовательность октетов, символ  <strong>&#39;.&#39;</strong></p>
-
-<p>Вектор инициализации (<strong>Initialization Vector</strong>)</p>
-
-<p>Т.к. для шифрования был использован алгоритм ГОСТ 34.10-2012, то вектор инициализации в компактной сериализации JWE не передавался и был указан как пустая последовательность октетов, символ &#39;.&#39;</p>
-
-<p>Зашифрованный текст (<strong>Ciphertext</strong>)</p>
-
-<p>Зашифрованный текст, который получили в результате операции шифрования открытого текста, в качестве ключа шифрования были использованы известные и уже имеющиеся как на стороне клиента так и на стороне Банка сертификаты (сертификат криптопрофиля пользователя клиента, кому отправляем уведомление). Был использован сертификат с  <strong>UUID</strong>, указанный в Защищенном заголовке (<strong>Protected Header</strong>) в параметре  <strong>kid</strong>.</p>
-
-<p>Шифрование было произведено по алгоритму указанному в Защищенном заголовке (<strong>Protected Header</strong>) в параметре  <strong>enc</strong>, в данном случае  <strong>gost34.10-2012</strong>.</p>
-
-<p>Тег аутентификации (<strong>Authentication Tag</strong>)</p>
-
-<p>Т.к. для шифрования был использован алгоритм ГОСТ 34.10-2012, то тег аутентификации в компактной сериализации JWE не передавался и был указан как пустая последовательность октетов, символ  <strong>&#39;.&#39;</strong></p>
-
-<p>Исходя из описания выше  <strong>JWE</strong>  состоит из пяти частей и формируется как BASE64URL(UTF8(JWE  <strong>Protected Header</strong>)) || &#39;.&#39; &#39;.&#39; &#39;.&#39; || BASE64URL(JWE  <strong>Ciphertext</strong>) || &#39;.&#39;</p>
-
-<p><strong>Ресурс</strong> <strong>Уведомление о событии (Идентификаторы операций по выписке)</strong><span id="resourse_webhook_notif_ident"></span></p>
-
-<p>Ресурс позволяет получить Партнеру уведомление на ранее подписанное событие.</p>
-
-<p>Запрос инициируется на стороне Банка в момент изменения события. Партнеру необходимо реализовать на своей стороне обработку POST-запроса на  <strong>url</strong> - ресурса указанный в заявке на получение <a href="#resourse_webhook_id">уведомлений</a>.</p>
-
-<p><strong>Ресурс Уведомление о событии (изменение статуса РПП/ИПТ на Исполнен)</strong><span id="resourse_webhook_notif_done"></span></p>
-
-<p>Ресурс позволяет получить Партнеру уведомление на ранее подписанное событие.</p>
-
-<p>Запрос инициируется на стороне Банка в момент изменения события. Партнеру необходимо реализовать на своей стороне обработку POST-запроса на  <strong>url</strong> - ресурса указанный в заявке на получение <a href="#resourse_webhook_id">уведомлений</a>.</p>
 <h1 id='1b9b7a6c78'>Обратная связь</h1>
 <p>Вы можете задать вопросы нашим разработчикам, оставить отзыв и предложить улучшения по SberBusinessAPI:</p>
 
@@ -15406,7 +14929,7 @@ This operation does not require authentication
 <td>Системное наименование тарифного плана</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-5'>Enumerated Values</h4>
+<h4 id='enumerated-values-4'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -16231,7 +15754,7 @@ This operation does not require authentication
 <td>Тариф на доставку (внутренние перевозки)</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-6'>Enumerated Values</h4>
+<h4 id='enumerated-values-5'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -16851,7 +16374,7 @@ This operation does not require authentication
 <td>Хэш идентификатора пользователя</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-7'>Enumerated Values</h4>
+<h4 id='enumerated-values-6'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -16932,7 +16455,7 @@ This operation does not require authentication
 <td>Тип отклика</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-8'>Enumerated Values</h4>
+<h4 id='enumerated-values-7'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -17205,7 +16728,7 @@ This operation does not require authentication
 <td>none</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-9'>Enumerated Values</h4>
+<h4 id='enumerated-values-8'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -18262,7 +17785,7 @@ This operation does not require authentication
 <td>Тип заявления</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-10'>Enumerated Values</h4>
+<h4 id='enumerated-values-9'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -19081,7 +18604,7 @@ This operation does not require authentication
 <td>Уникальный идентификатор операции (UUID)</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-11'>Enumerated Values</h4>
+<h4 id='enumerated-values-10'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -20467,7 +19990,7 @@ This operation does not require authentication
 <td>Дата валютирования/возврата</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-12'>Enumerated Values</h4>
+<h4 id='enumerated-values-11'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -22234,7 +21757,7 @@ This operation does not require authentication
 <td>Идентификатор заявки, присвоенный партнёром (UUID)</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-13'>Enumerated Values</h4>
+<h4 id='enumerated-values-12'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -22457,7 +21980,7 @@ This operation does not require authentication
 <td>Дата валютирования необязательной продажи</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-14'>Enumerated Values</h4>
+<h4 id='enumerated-values-13'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -23308,7 +22831,7 @@ This operation does not require authentication
 <td>Название тарифа</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-15'>Enumerated Values</h4>
+<h4 id='enumerated-values-14'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -23856,7 +23379,7 @@ This operation does not require authentication
 <td>Время совершения платежа</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-16'>Enumerated Values</h4>
+<h4 id='enumerated-values-15'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -24552,7 +24075,7 @@ This operation does not require authentication
 <td>Дата валютирования</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-17'>Enumerated Values</h4>
+<h4 id='enumerated-values-16'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -25564,7 +25087,7 @@ This operation does not require authentication
 <td>Дата расчёта</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-18'>Enumerated Values</h4>
+<h4 id='enumerated-values-17'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -26198,7 +25721,7 @@ This operation does not require authentication
 <td>Дата валютирования</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-19'>Enumerated Values</h4>
+<h4 id='enumerated-values-18'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -26445,7 +25968,7 @@ This operation does not require authentication
 <td>Наименование статуса</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-20'>Enumerated Values</h4>
+<h4 id='enumerated-values-19'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -28123,7 +27646,7 @@ This operation does not require authentication
 <td>Признак возможности проведения срочных платежей</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-21'>Enumerated Values</h4>
+<h4 id='enumerated-values-20'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -28386,7 +27909,7 @@ This operation does not require authentication
 <td>Данные НДС</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-22'>Enumerated Values</h4>
+<h4 id='enumerated-values-21'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -28602,7 +28125,7 @@ This operation does not require authentication
 <td>Названия полей (при наличии связи с моделью)</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-23'>Enumerated Values</h4>
+<h4 id='enumerated-values-22'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -28667,7 +28190,7 @@ This operation does not require authentication
 <td>Способ расчета НДС</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-24'>Enumerated Values</h4>
+<h4 id='enumerated-values-23'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -29320,7 +28843,7 @@ This operation does not require authentication
 <td>ИНН организации-резидента</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-25'>Enumerated Values</h4>
+<h4 id='enumerated-values-24'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -29638,7 +29161,7 @@ This operation does not require authentication
 <td>Признак поставки</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-26'>Enumerated Values</h4>
+<h4 id='enumerated-values-25'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -31653,7 +31176,7 @@ This operation does not require authentication
 <td>Данные НДС</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-27'>Enumerated Values</h4>
+<h4 id='enumerated-values-26'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -32736,7 +32259,7 @@ This operation does not require authentication
 <td>Данные НДС</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-28'>Enumerated Values</h4>
+<h4 id='enumerated-values-27'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -32821,7 +32344,7 @@ This operation does not require authentication
 <td>Ссылка для выгрузки файла</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-29'>Enumerated Values</h4>
+<h4 id='enumerated-values-28'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -33526,7 +33049,7 @@ This operation does not require authentication
 <td>Признак возможности проведения срочных платежей</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-30'>Enumerated Values</h4>
+<h4 id='enumerated-values-29'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -34297,7 +33820,7 @@ This operation does not require authentication
 <td>Бенефициарные владельцы</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-31'>Enumerated Values</h4>
+<h4 id='enumerated-values-30'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -34824,7 +34347,7 @@ This operation does not require authentication
 <td>Ссылка для загрузки файла</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-32'>Enumerated Values</h4>
+<h4 id='enumerated-values-31'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -35494,7 +35017,7 @@ This operation does not require authentication
 <td>Ссылка для загрузки файла</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-33'>Enumerated Values</h4>
+<h4 id='enumerated-values-32'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -35722,7 +35245,7 @@ This operation does not require authentication
 <td>Данные НДС</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-34'>Enumerated Values</h4>
+<h4 id='enumerated-values-33'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -36041,7 +35564,7 @@ This operation does not require authentication
 <td>Тип вклада (депозита)</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-35'>Enumerated Values</h4>
+<h4 id='enumerated-values-34'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -36331,7 +35854,7 @@ This operation does not require authentication
 <td>Уникальный идентификатор операции (UUID)</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-36'>Enumerated Values</h4>
+<h4 id='enumerated-values-35'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -37122,7 +36645,7 @@ This operation does not require authentication
 <td>Код вида валютной операции</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-37'>Enumerated Values</h4>
+<h4 id='enumerated-values-36'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -38290,7 +37813,7 @@ This operation does not require authentication
 <td>Дата принятия/возврата</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-38'>Enumerated Values</h4>
+<h4 id='enumerated-values-37'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -38545,7 +38068,7 @@ This operation does not require authentication
 <td>Назначение платежа</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-39'>Enumerated Values</h4>
+<h4 id='enumerated-values-38'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -38968,7 +38491,7 @@ This operation does not require authentication
 <td>Тарифная ставка (%)</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-40'>Enumerated Values</h4>
+<h4 id='enumerated-values-39'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -39789,7 +39312,7 @@ This operation does not require authentication
 <td>Системное наименование тарифного плана</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-41'>Enumerated Values</h4>
+<h4 id='enumerated-values-40'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -39943,7 +39466,7 @@ This operation does not require authentication
 <td>Номер доверенности</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-42'>Enumerated Values</h4>
+<h4 id='enumerated-values-41'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -40535,7 +40058,7 @@ This operation does not require authentication
 <td>Данные НДС</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-43'>Enumerated Values</h4>
+<h4 id='enumerated-values-42'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -40616,7 +40139,7 @@ This operation does not require authentication
 <td>Пакетные тарифы. Количество бесплатных сообщений в тарифе</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-44'>Enumerated Values</h4>
+<h4 id='enumerated-values-43'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -41165,7 +40688,7 @@ This operation does not require authentication
 <td>Время работы по</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-45'>Enumerated Values</h4>
+<h4 id='enumerated-values-44'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -41299,7 +40822,7 @@ This operation does not require authentication
 <td>Дата валютирования перевода средств</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-46'>Enumerated Values</h4>
+<h4 id='enumerated-values-45'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -41464,7 +40987,7 @@ This operation does not require authentication
 <td>Номер по порядку</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-47'>Enumerated Values</h4>
+<h4 id='enumerated-values-46'>Enumerated Values</h4>
 <table><thead>
 <tr>
 <th>Property</th>
